@@ -1,17 +1,16 @@
 mqtt = require 'mqtt'
-monitor = require 'os-monitor'
+stats = require('sysstats')()
 
-mqttUrl = process.env.MQTT or 'mqtt://localhost'
+mqttUrl = process.env.MQTT or 'mqtt://localhost:4883'
 client = mqtt.connect mqttUrl
 
-monitor.start()
-monitor.on 'monitor', ( e ) ->
-  console.log e
+update = ->
+  x =
+    cpus: stats.cpus()
+    memory: stats.mem()
+
+  str = JSON.  client.publish 'os/stats', str
 
 client.on 'connect', ->
-  monitor.on 'monitor', ( e ) ->
-    console.log e
-    client.publish 'os/stats', e
-  
-
-
+  console.log 'mqtt: connected'
+  setInterval update, 1000

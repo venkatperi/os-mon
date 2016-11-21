@@ -9,7 +9,8 @@
   "description": "NEEDS DESCRIPTION",
   "dependencies": {
     "mqtt": "^2.1.3",
-    "os-monitor": "^1.0.5"
+    "os-monitor": "^1.0.5",
+    "sysstats": "^1.0.1"
   },
   "bundleDependencies": [],
   "main": "dist/index",
